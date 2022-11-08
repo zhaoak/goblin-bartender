@@ -49,4 +49,9 @@ export function renderGoblin(goblin) {
     return goblinEl;
 }
 
-export function renderEventLogLine(line) {}
+export function renderEventLogLine(line) {
+    const lineEl = document.createElement('p');
+    lineEl.classList.add('event-line');
+    lineEl.textContent = line;
+    return lineEl;
+}

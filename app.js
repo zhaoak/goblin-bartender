@@ -42,11 +42,27 @@ function updateGoblinList() {
     }
 }
 
+function updateEventLog() {
+    eventLogEl.textContent = '';
+    for (let line of eventLog) {
+        eventLogEl.append(renderEventLogLine(line));
+    }
+}
+
 /* Misc Functions */
 function getFreshId() {
     freshId++;
     return freshId - 1;
 }
 
+function addToLog(message) {
+    eventLog.push(message);
+    // log has max of ten lines
+    if (eventLog.length > 10) {
+        eventLog.shift(); // pops element at index 0
+    }
+}
+
 // (don't forget to call any display functions you want to run on page load!)
 updateGoblinList();
+updateEventLog();

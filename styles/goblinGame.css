@@ -79,9 +79,13 @@
 
 #event-log {
     display: flex;
-    flex-flow: column-reverse nowrap;
+    flex-flow: column nowrap;
     margin-top: 5px;
-    height: 10em;
+}
+
+.event-line {
+    font-family: monospace;
+    font-size: 0.9em;
 }
 
 button {
