@@ -41,7 +41,6 @@ resetButton.addEventListener('click', () => {
 
 /* Display Functions */
 function updateGoblinList() {
-    console.log(goblinList);
     goblinListEl.textContent = '';
     for (let goblin of goblinList) {
         const goblinEl = renderGoblin(goblin);
@@ -72,10 +71,11 @@ function gameOver() {
     takeBreakButton.disabled = true;
 
     for (let goblin of goblinList) {
-        goblin.removeEventListener('click', serveGoblin(goblin));
         goblin.dp = 10;
     }
-    addToLog('You collapse in exhaustion! The goblins were simply too annoying for you.');
+    addToLog(
+        `You collapse in exhaustion after managing to serve ${score} goblins, but they were simply too annoying for you in the end.`
+    );
     addToLog('Game Over!');
     updateEventLog();
     updateGoblinList();
@@ -97,7 +97,7 @@ function addToLog(message) {
 }
 
 function serveGoblin(goblin) {
-    // if goblin is already at 0 dp, remove from list
+    // if goblin is already at 0 dp, remove from list and increment score
     if (goblin.dp === 0) {
         addToLog(`${goblin.name} decides it's time to go home and leaves. They do not tip.`);
         const findGoblinIndexById = (element) => element.id === goblin.id;
@@ -113,6 +113,8 @@ function serveGoblin(goblin) {
         if (goblin.dp <= 0) {
             addToLog(`${goblin.name} looks about ready to go home.`);
         }
+        // check if player out of energy
+        checkGameStatus();
     }
 
     updateEventLog();
@@ -128,11 +130,15 @@ function resetGame() {
     goblinList.splice(0); // empty array
     goblinList.push({ id: 0, name: 'Gobbo', dp: 2 });
     goblinList.push({ id: 1, name: 'Grebbo', dp: 1 });
+
     addGoblinButton.disabled = false;
     goblinNameInput.disabled = false;
     trainBartendingButton.disabled = false;
     takeBreakButton.disabled = false;
+
     addToLog('Game reset.');
+    addToLog("Welcome to your new job. Hope your shift doesn't take too much out of you.");
+    addToLog('Click a goblin to serve them a drink.');
     updateGoblinList();
     updatePlayerStats();
     updateEventLog();
