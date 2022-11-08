@@ -36,6 +36,26 @@ addGoblinButton.addEventListener('click', () => {
     goblinNameInput.value = '';
 });
 
+trainBartendingButton.addEventListener('click', () => {
+    if (playerPower >= 4) {
+        addToLog("You can't train your skills any farther. You're already the best there is!");
+    } else if (Math.random() > 0.25) {
+        // if training fails
+        addToLog(
+            'You try to train, but the goblins heckle you, and you are forced to abandon your efforts.'
+        );
+        allGoblinsAttack(1);
+        checkGameStatus();
+    } else {
+        // if training succeeds
+        playerPower++;
+        addToLog('You focus your barkeeping strength, and your Bartending Power increases!');
+    }
+    updatePlayerStats();
+    updateGoblinList();
+    updateEventLog();
+});
+
 resetButton.addEventListener('click', () => {
     resetGame();
 });
@@ -167,6 +187,12 @@ function addGoblin(customName) {
     newGoblin.dp = Math.ceil(Math.random() * 4);
     goblinList.push(newGoblin);
     addToLog(`${newGoblin.name} enters the bar.`);
+}
+
+function allGoblinsAttack(modifier) {
+    for (let goblin of goblinList) {
+        calcGoblinAttack(goblin, modifier);
+    }
 }
 
 function calcGoblinAttack(goblin, modifier) {
