@@ -5,6 +5,15 @@
     padding: 5px 7px 7px 5px;
 }
 
+.goblin-box {
+    border: thin solid purple;
+    background-color: lightsalmon;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #game-screen {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -46,7 +55,7 @@
 }
 
 #add-goblin-controls {
-    order: 99;
+    order: -1;
     display: flex;
     flex-flow: row nowrap;
 }
