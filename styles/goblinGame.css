@@ -15,10 +15,15 @@
     height: 2em;
 }
 
+.went-home {
+    border: thin solid pink;
+    background-color: burlywood;
+};
+
 #game-screen {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 5fr, 1fr, 5fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 5fr 1fr 5fr;
     gap: 3px 3px;
 }
 
@@ -48,15 +53,18 @@
     grid-row: 10 / 11;
 }
 
-#goblin-list {
+#goblin-list-box {
     grid-column: 5 / 7;
     grid-row: 1 / 11;
+}
+
+#goblin-list{
     display: flex;
     flex-flow: column-reverse nowrap;
 }
 
 #add-goblin-controls {
-    order: -1;
+    order: 0;
     display: flex;
     flex-flow: row nowrap;
 }

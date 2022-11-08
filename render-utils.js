@@ -40,6 +40,7 @@ export function renderGoblin(goblin) {
             break;
         default:
             srEl.textContent = 'question mark emoji--something went wrong';
+            emoteEl.textContent = '???';
     }
 
     goblinEl.id = `goblin-${goblin.id}`;
@@ -47,3 +48,5 @@ export function renderGoblin(goblin) {
 
     return goblinEl;
 }
+
+export function renderEventLogLine(line) {}

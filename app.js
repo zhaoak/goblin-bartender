@@ -31,5 +31,22 @@ let gameOver = false;
 /* Events */
 
 /* Display Functions */
+function updateGoblinList() {
+    goblinListEl.textContent = '';
+    for (let goblin of goblinList) {
+        const goblinEl = renderGoblin(goblin);
+        goblinEl.addEventListener('click', () => {
+            // call goblin click handler
+        });
+        goblinListEl.append(goblinEl);
+    }
+}
+
+/* Misc Functions */
+function getFreshId() {
+    freshId++;
+    return freshId - 1;
+}
 
 // (don't forget to call any display functions you want to run on page load!)
+updateGoblinList();
