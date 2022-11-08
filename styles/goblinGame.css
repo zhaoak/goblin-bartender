@@ -12,6 +12,7 @@
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    height: 2em;
 }
 
 #game-screen {

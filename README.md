@@ -25,6 +25,7 @@ An endless game about serving rude goblins alcohol
 - Player Bartending Power (max of 4)
 - Array containing Event Log (max ten lines)
 - Game Status (is player out of energy?)
+- `freshId`: always contains unused ID number, should not be accessed directly
 
 ## Events
 - Click goblin:
@@ -67,6 +68,7 @@ An endless game about serving rude goblins alcohol
 - `takeBreak()`: roll to take break, call `allGoblinsAttack(0.5)`
 - `resetGame()`: reset game, as per event above
 - `addToLog(message)`: adds given string to event log array
+- `getFreshId()`: returns new unused ID number
 
 ### Render Functions
 - `renderGoblin(goblin)`: returns goblin HTML element with name/stats of `goblin`
