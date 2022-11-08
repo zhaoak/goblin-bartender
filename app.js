@@ -14,7 +14,7 @@ const addGoblinButton = document.getElementById('add-goblin-button');
 const eventLogEl = document.getElementById('event-log');
 
 /* State */
-let goblinList = [
+const goblinList = [
     { id: 0, name: 'Gobbo', dp: 2 },
     { id: 1, name: 'Grebbo', dp: 1 },
 ];
@@ -41,10 +41,13 @@ resetButton.addEventListener('click', () => {
 
 /* Display Functions */
 function updateGoblinList() {
+    console.log(goblinList);
     goblinListEl.textContent = '';
     for (let goblin of goblinList) {
         const goblinEl = renderGoblin(goblin);
-        goblinEl.addEventListener('click', serveGoblin(goblin));
+        goblinEl.addEventListener('click', () => {
+            serveGoblin(goblin);
+        });
         goblinListEl.append(goblinEl);
     }
 }
@@ -122,11 +125,9 @@ function resetGame() {
     playerEnergy = 10;
     score = 0;
     freshId = 2;
-    goblinList = [];
-    goblinList = [
-        { id: 0, name: 'Gobbo', dp: 2 },
-        { id: 1, name: 'Grebbo', dp: 1 },
-    ];
+    goblinList.splice(0); // empty array
+    goblinList.push({ id: 0, name: 'Gobbo', dp: 2 });
+    goblinList.push({ id: 1, name: 'Grebbo', dp: 1 });
     addGoblinButton.disabled = false;
     goblinNameInput.disabled = false;
     trainBartendingButton.disabled = false;
