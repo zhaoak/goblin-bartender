@@ -75,11 +75,12 @@ An endless game about serving rude goblins alcohol
 ### Display Functions
 - `updateGoblinList()`: updates Customer List to reflect current state of goblin array
 - `updateEventLog()`: updates Event Log to reflect current state of event log array
+- `updatePlayerStats()`: updates all stats in player stats box to reflect current state
 
 ## Slices
 1. Make page layout using HTML and CSS
 2. Grab DOM elements, create state variables, create empty event handlers
-3. write `renderGoblin(goblin)` and `renderEventLogLine()`, test
+3. write `renderGoblin(goblin)`, `renderEventLogLine()`, test
 4. write `addToLog(message)`, test
 5. write `updateGoblinList()` and `updateEventLog()`, test
 6. write `serveGoblin(goblinInArray)`, `allGoblinsAttack(modifier)`, test

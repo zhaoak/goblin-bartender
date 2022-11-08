@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- title and favicon -->
-    <title>Web App</title>
+    <title>Bartending For Goblins</title>
     <link rel="icon" type="image/x-icon" href="assets/alchemy-favicon.png" />
 
     <!-- js -->
@@ -19,18 +19,46 @@
 
     <!-- css -->
     <link rel="stylesheet" href="styles/reset.css" />
-    <link rel="stylesheet" href="styles/global.css" />
-    <!-- add link for page specific css -->
+    <link rel="stylesheet" href="styles/global.css" />  
+    <link rel="stylesheet" href="styles/goblinGame.css" />
 
 </head>
 
 <body>
     <header>
         <img class="logo" src="assets/html_css_js.png" alt="logo">
-        <h1>Web App</h1>
+        <h1>Goblin Bartending Game</h1>
     </header>
 
     <main>
+        <section id="game-screen">
+            <section id="player-stats-box" class="ui-box">
+                <p>Your stats:</p>
+                <h3>Energy: <span id="player-energy-display">10/10</span></h3>
+                <h3>Bartending Power: <span id="player-bartending-power">1 DP</span></h3>
+                <h6><span id="goblins-served">0</span> goblins served</h6>
+            </section>
+
+            <section id="player-secondary-options">
+                <button id="train-bartending-button" type="button">Train Bartending (50%)</button>
+                <button id="take-break-button" type="button">Take a Break (75%)</button>
+            </section>
+            <section id="empty-space">
+                <!-- may put a character sprite or something similar here later -->
+            </section>
+            <button id="reset-button" type="button">reset</button>
+
+            <section id="goblin-list" class="ui-box">
+                <div id="add-goblin-controls">
+                    <input id="goblin-name-input" type="text" placeholder="add new goblin..." />
+                    <button id="add-goblin-button" type="button">Add</button>
+                </div>
+            </section>
+        </section>
+
+        <section id="event-log" class="ui-box">
+
+        </section>
 
     </main>
 
