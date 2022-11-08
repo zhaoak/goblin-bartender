@@ -9,7 +9,7 @@ export function renderGoblin(goblin) {
     // goblin-box css class contains appropriate styling
     goblinEl.classList.add('goblin-box');
     nameEl.textContent = goblin.name;
-    dpEl.textContent = goblin.dp < 0 ? 0 : goblin.dp;
+    dpEl.textContent = goblin.dp < 0 ? 0 : goblin.dp; // if dp < 0, render as 0
     dpEl.id = `goblin-dp-${goblin.id}`;
 
     srEl.classList.add('screen-reader-only');

@@ -69,6 +69,7 @@ An endless game about serving rude goblins alcohol
 - `resetGame()`: reset game, as per event above
 - `addToLog(message)`: adds given string to event log array
 - `getFreshId()`: returns new unused ID number
+- `calcGoblinAttack(goblin, modifier)`: calculates if goblin hits with probability `goblin.dp * 0.25` and damage `goblin.dp * modifier`
 
 ### Render Functions
 - `renderGoblin(goblin)`: returns goblin HTML element with name/stats of `goblin`
