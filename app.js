@@ -1,4 +1,5 @@
 /* Imports */
+import { renderGoblin, renderEventLogLine } from './render-utils.js';
 
 /* Get DOM Elements */
 const playerEnergyEl = document.getElementById('player-energy-display');
@@ -19,9 +20,13 @@ const goblinList = [
 ];
 let freshId = 2;
 const eventLog = [
-    'Welcome to your new job. Hope your shift doesn\'t take too much out of you.',
-    'Click a goblin to serve them a drink.',
+    "Welcome to your new job. Hope your shift doesn't take too much out of you.",
+    'Click on a goblin to serve them a drink.',
 ];
+let playerEnergy = 10;
+let playerPower = 1;
+let score = 0; // goblins served
+let gameOver = false;
 
 /* Events */
 
