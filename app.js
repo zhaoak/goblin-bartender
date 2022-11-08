@@ -16,7 +16,7 @@ const eventLogEl = document.getElementById('event-log');
 /* State */
 const goblinList = [
     { id: 0, name: 'Gobbo', dp: 2 },
-    { id: 1, name: 'Grebbo', dp: 1 },
+    { id: 1, name: 'Greebo', dp: 1 },
 ];
 let freshId = 2; // do not modify directly, call getFreshId() instead
 const eventLog = [
@@ -26,6 +26,7 @@ const eventLog = [
 let playerEnergy = 10;
 let playerPower = 1;
 let score = 0; // goblins served
+let gameLost = false;
 
 /* Events */
 addGoblinButton.addEventListener('click', () => {
@@ -44,9 +45,12 @@ function updateGoblinList() {
     goblinListEl.textContent = '';
     for (let goblin of goblinList) {
         const goblinEl = renderGoblin(goblin);
-        goblinEl.addEventListener('click', () => {
-            serveGoblin(goblin);
-        });
+        // only add event listener if game not over
+        if (gameLost === false) {
+            goblinEl.addEventListener('click', () => {
+                serveGoblin(goblin);
+            });
+        }
         goblinListEl.append(goblinEl);
     }
 }
@@ -69,6 +73,8 @@ function gameOver() {
     goblinNameInput.disabled = true;
     trainBartendingButton.disabled = true;
     takeBreakButton.disabled = true;
+
+    gameLost = true;
 
     for (let goblin of goblinList) {
         goblin.dp = 10;
@@ -127,9 +133,11 @@ function resetGame() {
     playerEnergy = 10;
     score = 0;
     freshId = 2;
+    gameLost = false;
+
     goblinList.splice(0); // empty array
     goblinList.push({ id: 0, name: 'Gobbo', dp: 2 });
-    goblinList.push({ id: 1, name: 'Grebbo', dp: 1 });
+    goblinList.push({ id: 1, name: 'Greebo', dp: 1 });
 
     addGoblinButton.disabled = false;
     goblinNameInput.disabled = false;
@@ -203,3 +211,4 @@ function checkGameStatus() {
 // (don't forget to call any display functions you want to run on page load!)
 updateGoblinList();
 updateEventLog();
+updatePlayerStats();
