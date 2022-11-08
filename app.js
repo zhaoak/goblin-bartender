@@ -29,6 +29,12 @@ let score = 0; // goblins served
 let gameOver = false;
 
 /* Events */
+addGoblinButton.addEventListener('click', () => {
+    addGoblin(goblinNameInput.value);
+    updateGoblinList();
+    updateEventLog();
+    goblinNameInput.value = '';
+});
 
 /* Display Functions */
 function updateGoblinList() {
@@ -87,6 +93,23 @@ function serveGoblin(goblin) {
     updateEventLog();
     updateGoblinList();
     updatePlayerStats();
+}
+
+function addGoblin(customName) {
+    if (goblinList.length >= 4) {
+        addToLog('The bar is already full, and cannot accommodate more goblins.');
+        return;
+    }
+    let newGoblin = { id: getFreshId(), name: customName, dp: -1 };
+    if (newGoblin.name === '') {
+        // assign random name if none provided
+        newGoblin.name = 'Gimbo';
+    }
+
+    // randomly determine new goblin's DP, from 1 to 4
+    newGoblin.dp = Math.ceil(Math.random() * 4);
+    goblinList.push(newGoblin);
+    addToLog(`${newGoblin.name} enters the bar.`);
 }
 
 function calcGoblinAttack(goblin, modifier) {
