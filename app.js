@@ -56,6 +56,27 @@ trainBartendingButton.addEventListener('click', () => {
     updateEventLog();
 });
 
+takeBreakButton.addEventListener('click', () => {
+    if (playerEnergy >= 10) {
+        addToLog("You don't need a break right now.");
+    } else if (Math.random() > 0.75) {
+        // if taking break fails
+        addToLog('You try to take a break, but the goblins demand your attention!');
+        allGoblinsAttack(0.5);
+        checkGameStatus();
+    } else {
+        // if training succeeds
+        playerEnergy += 3;
+        addToLog('You chill out for a bit. The goblins can wait! (+3 Energy)');
+        if (playerEnergy > 10) {
+            playerEnergy = 10;
+        }
+    }
+    updatePlayerStats();
+    updateGoblinList();
+    updateEventLog();
+});
+
 resetButton.addEventListener('click', () => {
     resetGame();
 });
@@ -164,6 +185,7 @@ function resetGame() {
     trainBartendingButton.disabled = false;
     takeBreakButton.disabled = false;
 
+    eventLog.splice(0); // wipe array
     addToLog('Game reset.');
     addToLog("Welcome to your new job. Hope your shift doesn't take too much out of you.");
     addToLog('Click a goblin to serve them a drink.');
