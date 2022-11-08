@@ -24,7 +24,6 @@ An endless game about serving rude goblins alcohol
 - Player Energy (max of 10)
 - Player Bartending Power (max of 4)
 - Array containing Event Log (max ten lines)
-- Game Status (is player out of energy?)
 - `freshId`: always contains unused ID number, should not be accessed directly
 
 ## Events
@@ -70,6 +69,7 @@ An endless game about serving rude goblins alcohol
 - `addToLog(message)`: adds given string to event log array
 - `getFreshId()`: returns new unused ID number
 - `calcGoblinAttack(goblin, modifier)`: calculates if goblin hits with probability `goblin.dp * 0.25` and damage `goblin.dp * modifier`
+- `checkGameStatus()`: checks if Energy is zero or less, triggers game over if so
 
 ### Render Functions
 - `renderGoblin(goblin)`: returns goblin HTML element with name/stats of `goblin`
@@ -79,6 +79,7 @@ An endless game about serving rude goblins alcohol
 - `updateGoblinList()`: updates Customer List to reflect current state of goblin array
 - `updateEventLog()`: updates Event Log to reflect current state of event log array
 - `updatePlayerStats()`: updates all stats in player stats box to reflect current state
+- `gameOver()`: disables all interactions except reset button, updates goblin emojis, prints event log informing you of game over
 
 ## Slices
 1. Make page layout using HTML and CSS

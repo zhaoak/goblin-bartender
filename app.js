@@ -14,7 +14,7 @@ const addGoblinButton = document.getElementById('add-goblin-button');
 const eventLogEl = document.getElementById('event-log');
 
 /* State */
-const goblinList = [
+let goblinList = [
     { id: 0, name: 'Gobbo', dp: 2 },
     { id: 1, name: 'Grebbo', dp: 1 },
 ];
@@ -26,7 +26,6 @@ const eventLog = [
 let playerEnergy = 10;
 let playerPower = 1;
 let score = 0; // goblins served
-let gameOver = false;
 
 /* Events */
 addGoblinButton.addEventListener('click', () => {
@@ -36,14 +35,16 @@ addGoblinButton.addEventListener('click', () => {
     goblinNameInput.value = '';
 });
 
+resetButton.addEventListener('click', () => {
+    resetGame();
+});
+
 /* Display Functions */
 function updateGoblinList() {
     goblinListEl.textContent = '';
     for (let goblin of goblinList) {
         const goblinEl = renderGoblin(goblin);
-        goblinEl.addEventListener('click', () => {
-            serveGoblin(goblin);
-        });
+        goblinEl.addEventListener('click', serveGoblin(goblin));
         goblinListEl.append(goblinEl);
     }
 }
@@ -59,6 +60,23 @@ function updatePlayerStats() {
     playerEnergyEl.textContent = `${playerEnergy}/10`;
     playerPowerEl.textContent = `${playerPower} DP`;
     goblinsServedEl.textContent = score;
+}
+
+function gameOver() {
+    addGoblinButton.disabled = true;
+    goblinNameInput.disabled = true;
+    trainBartendingButton.disabled = true;
+    takeBreakButton.disabled = true;
+
+    for (let goblin of goblinList) {
+        goblin.removeEventListener('click', serveGoblin(goblin));
+        goblin.dp = 10;
+    }
+    addToLog('You collapse in exhaustion! The goblins were simply too annoying for you.');
+    addToLog('Game Over!');
+    updateEventLog();
+    updateGoblinList();
+    updatePlayerStats();
 }
 
 /* Misc Functions */
@@ -88,11 +106,35 @@ function serveGoblin(goblin) {
         addToLog(`You get ${goblin.name} a drink. (${goblin.name} DP -${playerPower})`);
         calcGoblinAttack(goblin, 1); // no modifier when clicking goblin
         goblin.dp -= playerPower;
+        // note in log if goblin loses all dp
+        if (goblin.dp <= 0) {
+            addToLog(`${goblin.name} looks about ready to go home.`);
+        }
     }
 
     updateEventLog();
     updateGoblinList();
     updatePlayerStats();
+}
+
+function resetGame() {
+    playerPower = 1;
+    playerEnergy = 10;
+    score = 0;
+    freshId = 2;
+    goblinList = [];
+    goblinList = [
+        { id: 0, name: 'Gobbo', dp: 2 },
+        { id: 1, name: 'Grebbo', dp: 1 },
+    ];
+    addGoblinButton.disabled = false;
+    goblinNameInput.disabled = false;
+    trainBartendingButton.disabled = false;
+    takeBreakButton.disabled = false;
+    addToLog('Game reset.');
+    updateGoblinList();
+    updatePlayerStats();
+    updateEventLog();
 }
 
 function addGoblin(customName) {
@@ -142,6 +184,12 @@ function calcGoblinAttack(goblin, modifier) {
         addToLog(
             `${goblin.name} says something annoying, but fortunately, you weren't listening. (Energy -0)`
         );
+    }
+}
+
+function checkGameStatus() {
+    if (playerEnergy <= 0) {
+        gameOver();
     }
 }
 

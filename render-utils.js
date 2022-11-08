@@ -17,6 +17,10 @@ export function renderGoblin(goblin) {
 
     // set emoji/screenreader text, add classes as appropriate for DP value
     switch (goblin.dp) {
+        case 10:
+            srEl.textContent = 'super mad emoji!!';
+            emoteEl.textContent = '💢';
+            break;
         case 4:
             srEl.textContent = 'grumpy emoji';
             emoteEl.textContent = '😠';
