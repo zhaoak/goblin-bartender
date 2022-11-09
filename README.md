@@ -18,7 +18,7 @@ Screenreader support unfortunately not implemented :/
     - dynamically created customers, each including:
         - name, emoji/image representing DP, DP display
     - at bottom, name entry and add button for adding goblin with custom name
-        - if left blank, assign name
+        - if left blank, assign random name
 - Event log at bottom
 
 ## State
@@ -32,25 +32,24 @@ Screenreader support unfortunately not implemented :/
 - Click goblin:
     - reduce DP of goblin by Bartending Power stat
     - (goblin DP / 4) chance of player taking (goblin DP) Energy damage
-    - display text explaining what happened in event log
+    - describe what happens in event log
     - additionally, if player brings goblin to 0 DP:
-        - remove goblin from array
-        - update event log
+        - make note of it in event log
     - update Customer List
 
 - Click Add Goblin Button:
     - Generate new goblin stats/name if none provided
     - add new goblin to goblin array
-    - update Cutomer List
+    - update Customer List
 
 - Click Train Bartending button:
     - 25% chance (not 50%, despite what wireframe says) to increase DP by 1 to a max of 4
-    - All goblins roll to decrease Energy
+    - if roll fails, all goblins roll to decrease Energy
 
 - Click Take a Break button:
     - 75% chance to heal 3 Energy
     - print result to event log
-    - All goblins roll to decrease energy with halved DP
+    - if roll fails, all goblins roll to decrease energy with halved DP
     - print results to event log
 
 - Click Reset button:
