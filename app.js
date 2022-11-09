@@ -7,6 +7,7 @@ const playerPowerEl = document.getElementById('player-bartending-power');
 const goblinsServedEl = document.getElementById('goblins-served');
 const trainBartendingButton = document.getElementById('train-bartending-button');
 const takeBreakButton = document.getElementById('take-break-button');
+const gameOverMessage = document.getElementById('game-over-message');
 const resetButton = document.getElementById('reset-button');
 const goblinListEl = document.getElementById('goblin-list');
 const goblinNameInput = document.getElementById('goblin-name-input');
@@ -147,6 +148,7 @@ function gameOver() {
         `You collapse in exhaustion after managing to serve ${score} goblins, but they were simply too annoying for you in the end.`
     );
     addToLog('Game Over!');
+    gameOverMessage.classList.remove('hidden');
     updateEventLog();
     updateGoblinList();
     updatePlayerStats();
@@ -207,6 +209,7 @@ function resetGame() {
     goblinNameInput.disabled = false;
     trainBartendingButton.disabled = false;
     takeBreakButton.disabled = false;
+    gameOverMessage.classList.add('hidden');
 
     eventLog.splice(0); // wipe array
     addToLog('Game reset.');

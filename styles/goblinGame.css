@@ -1,8 +1,7 @@
-
 .ui-box {
     border: thick double black;
     background-color: lightgray;
-    padding: 5px 7px 7px 5px;
+    padding: 5px 10px 5px 10px;
 }
 
 .goblin-box {
@@ -10,15 +9,15 @@
     background-color: lightsalmon;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    height: 2em;
+    height: 4em;
 }
 
 .went-home {
     border: thin solid pink;
     background-color: burlywood;
-};
+}
 
 #game-screen {
     display: grid;
@@ -44,8 +43,14 @@
 #empty-space {
     grid-column: 1 / 5;
     grid-row: 7 / 11;
-    border: thick dotted red;
     height: 200px;
+}
+
+#game-over-message {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: red;
+    font-size: 4em;
 }
 
 #reset-button {
@@ -56,17 +61,22 @@
 #goblin-list-box {
     grid-column: 5 / 7;
     grid-row: 1 / 11;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
 }
 
 #goblin-list{
     display: flex;
-    flex-flow: column-reverse nowrap;
+    flex-flow: column nowrap;
+    gap: 5px;
 }
 
 #add-goblin-controls {
-    order: 0;
     display: flex;
     flex-flow: row nowrap;
+    grid-column: 5 / 7;
+    grid-row: 10 / 11;
 }
 
 #goblin-name-input {
@@ -81,11 +91,23 @@
     display: flex;
     flex-flow: column nowrap;
     margin-top: 5px;
+    min-height: 14em;
+    max-height: 30em;
 }
 
 .event-line {
     font-family: monospace;
     font-size: 0.9em;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.screen-reader-only {
+    display: none;
+}
+
+.hidden {
+    display: none;
 }
 
 button {
