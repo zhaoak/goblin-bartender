@@ -30,6 +30,9 @@ Screenreader support unfortunately not implemented :/
 
 ## Events
 - Click goblin:
+    - if goblin already at 0 DP:
+        - remove goblin from list
+        - make note of removal in event log
     - reduce DP of goblin by Bartending Power stat
     - (goblin DP / 4) chance of player taking (goblin DP) Energy damage
     - describe what happens in event log
@@ -58,6 +61,7 @@ Screenreader support unfortunately not implemented :/
     - clear goblin array, regenerate default goblins
     - clear event log
     - acknowledge reset in event log
+    - reset to initial state
 
 ## Functions
 ### Primary
