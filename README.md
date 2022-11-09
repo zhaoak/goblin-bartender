@@ -70,6 +70,7 @@ An endless game about serving rude goblins alcohol
 - `getFreshId()`: returns new unused ID number
 - `calcGoblinAttack(goblin, modifier)`: calculates if goblin hits with probability `goblin.dp * 0.25` and damage `goblin.dp * modifier`
 - `checkGameStatus()`: checks if Energy is zero or less, triggers game over if so
+- `returnRandInt(max)`: return random int between zero and `max`
 
 ### Render Functions
 - `renderGoblin(goblin)`: returns goblin HTML element with name/stats of `goblin`

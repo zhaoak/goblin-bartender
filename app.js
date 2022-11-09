@@ -27,6 +27,29 @@ let playerEnergy = 10;
 let playerPower = 1;
 let score = 0; // goblins served
 let gameLost = false;
+const goblinDefaultNameList = [
+    'Gorbo',
+    'Grindle',
+    'Garfield',
+    'Grossman',
+    'Grindcore',
+    'Greg',
+    'Jerma985',
+    'Giblet',
+    'Gem',
+    'Griggs',
+    'Garbage',
+    'Giggle',
+    'Gruntilda',
+    'Gocko',
+    'Gilbert',
+    'Grandma',
+    'Grimace',
+    'Bob',
+    'Gex',
+    'Goose',
+    'Gonk',
+];
 
 /* Events */
 addGoblinButton.addEventListener('click', () => {
@@ -69,7 +92,7 @@ takeBreakButton.addEventListener('click', () => {
         playerEnergy += 3;
         addToLog('You chill out for a bit. The goblins can wait! (+3 Energy)');
         if (playerEnergy > 10) {
-            playerEnergy = 10;
+            playerEnergy = 10; // player energy should not exceed 10
         }
     }
     updatePlayerStats();
@@ -202,7 +225,7 @@ function addGoblin(customName) {
     let newGoblin = { id: getFreshId(), name: customName, dp: -1 };
     if (newGoblin.name === '') {
         // assign random name if none provided
-        newGoblin.name = 'Gimbo';
+        newGoblin.name = goblinDefaultNameList[returnRandInt(goblinDefaultNameList.length - 1)];
     }
 
     // randomly determine new goblin's DP, from 1 to 4
@@ -239,8 +262,11 @@ function calcGoblinAttack(goblin, modifier) {
             case 1:
                 addToLog(`${goblin.name} drunkenly sings a battle song. (Energy -1)`);
                 break;
+            case 0:
+                addToLog(`${goblin.name} drunkenly giggles to themself quietly. (Energy -0)`);
+                break;
             default:
-                addToLog('Something is wrong.');
+                addToLog('Something is wrong. Consider complaining to github.com/zhaoak about it!');
         }
     } else {
         // if goblin misses
@@ -248,6 +274,10 @@ function calcGoblinAttack(goblin, modifier) {
             `${goblin.name} says something annoying, but fortunately, you weren't listening. (Energy -0)`
         );
     }
+}
+
+function returnRandInt(max) {
+    return Math.floor(Math.random() * (max + 1));
 }
 
 function checkGameStatus() {

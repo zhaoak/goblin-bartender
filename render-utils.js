@@ -19,11 +19,11 @@ export function renderGoblin(goblin) {
     switch (goblin.dp) {
         case 10:
             srEl.textContent = 'super mad emoji!!';
-            emoteEl.textContent = '💢';
+            emoteEl.textContent = '🤬';
             break;
         case 4:
             srEl.textContent = 'grumpy emoji';
-            emoteEl.textContent = '😠';
+            emoteEl.textContent = '😡';
             break;
         case 3:
             srEl.textContent = 'less grumpy emoji';
