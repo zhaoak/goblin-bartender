@@ -181,6 +181,11 @@ function serveGoblin(goblin) {
         addToLog(`You get ${goblin.name} a drink. (${goblin.name} DP -${playerPower})`);
         calcGoblinAttack(goblin, 1); // no modifier when clicking goblin
         goblin.dp -= playerPower;
+        if (goblin.dp < 0) {
+            // if goblin reduced to less than 0 DP, set to 0
+            goblin.dp = 0;
+        }
+
         // note in log if goblin loses all dp
         if (goblin.dp <= 0) {
             addToLog(`${goblin.name} looks about ready to go home.`);
