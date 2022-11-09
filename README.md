@@ -2,6 +2,8 @@
 
 An endless game about serving rude goblins alcohol
 
+Screenreader support unfortunately not implemented :/
+
 ## Wireframe
 
 ![A wireframe diagram of the game screen.](goblin_wireframe.png)
